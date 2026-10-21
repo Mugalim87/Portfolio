@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ky" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб-дизайн боюнча интерактивдүү колдонмо</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .device-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 glass border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/20">
+                    <i class="fa-solid fa-code text-lg"></i>
+                </div>
+                <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-sky-600 to-indigo-600 dark:from-sky-400 dark:to-indigo-400 bg-clip-text text-transparent">
+                    МЕХАТРОНИКА
+                </span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                <a href="#about" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Незгизги түшүнүк</a>
+                <a href="#ui-ux" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">UI / UX</a>
+                <a href="#responsive" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Адаптивдүүлүк</a>
+                <a href="#process" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Этаптар</a>
+                <a href="#tools" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Куралдар</a>
+                <a href="#quiz" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">Тест</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <!-- Dark Mode Toggle Button -->
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-200/60 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+        <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-100 via-slate-50 to-slate-50 dark:from-sky-950/40 dark:via-slate-950 dark:to-slate-950"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 mb-6">
+                <i class="fa-solid fa-sparkles"></i> Интерактивдүү Окуу Инструменти
+            </span>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto leading-tight mb-6">
+                Веб-дизайн деген эмне? <span class="block text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-600">Санарип дүйнөнү долбоорлоо</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Веб-дизайн — бул веб-сайттарды визуалдык жасалгалоо, колдонуучуга ыңгайлуу структура түзүү жана заманбап технологияларды айкалыштыруу искусствосу.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#responsive" class="px-7 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold shadow-lg shadow-sky-600/30 hover:shadow-sky-600/50 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-laptop-mobile"></i> Симуляторду байкап көрүү
+                </a>
+                <a href="#quiz" class="px-7 py-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-circle-question"></i> Билимди текшерүү
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- UI vs UX Section -->
+    <section id="ui-ux" class="py-16 md:py-24 bg-white dark:bg-slate-900 border-y border-slate-200/60 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                    UI жана UX: Негизги 2 Түркүк
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">
+                    Ийгиликтүү веб-сайт визуалдык сулуулук (UI) менен колдонуучунун ыңгайлуулугунун (UX) гармониясынан куралат.
+                </p>
+            </div>
+
+            <!-- UI UX Cards Container -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- UI Card -->
+                <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-sky-500/50 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-paint-brush"></i>
+                    </div>
+                    <span class="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase">User Interface</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-1 mb-4">UI — Колдонуучу Интерфейси</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Сайттын сырткы визуалдык эстетикасына жооп берет. Ага түстөр, шрифтер, кнопкалар, сүрөттөр жана микро-анимациялар кирет.
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-medium">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-sky-500"></i> Визуалдык эстетика жана стиль</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-sky-500"></i> Типографика жана түстөр палитрасы</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-sky-500"></i> Иконкалар жана баскычтардын дизайны</li>
+                    </ul>
+                </div>
+
+                <!-- UX Card -->
+                <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase">User Experience</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mt-1 mb-4">UX — Колдонуучу Тажрыйбасы</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Колдонуучу сайтты колдонуу учурундагы логикасы жана ылдамдыгы. Максат — колдонуучуну керектүү натыйжага минималдуу кадам менен жеткирүү.
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-medium">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-indigo-500"></i> Логикалык навигация жана структура</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-indigo-500"></i> Колдонуучунун жүрүм-турумун изилдөө</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-indigo-500"></i> Ыңгайлуулук жана ылдамдык</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 dark:bg-slate-800/60 text-slate-900 dark:text-white text-sm font-bold">
+                            <th class="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800">Өзгөчөлүгү</th>
+                            <th class="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 text-sky-600 dark:text-sky-400">UI (User Interface)</th>
+                            <th class="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 text-indigo-600 dark:text-indigo-400">UX (User Experience)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-sm text-slate-600 dark:text-slate-300">
+                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+                            <td class="p-4 sm:p-5 font-semibold text-slate-900 dark:text-white">Басым жасайт:</td>
+                            <td class="p-4 sm:p-5">Визуалдык көрүнүшкө жана кооздукка</td>
+                            <td class="p-4 sm:p-5">Иштөө функциясына жана логикасына</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+                            <td class="p-4 sm:p-5 font-semibold text-slate-900 dark:text-white">Башкы суроо:</td>
+                            <td class="p-4 sm:p-5">"Сайт кандай көрүнүп жатат?"</td>
+                            <td class="p-4 sm:p-5">"Сайтты колдонуу канчалык оңой?"</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+                            <td class="p-4 sm:p-5 font-semibold text-slate-900 dark:text-white">Элементтери:</td>
+                            <td class="p-4 sm:p-5">Түстөр, баскычтар, шрифттер, иконкалар</td>
+                            <td class="p-4 sm:p-5">Карта, прототиптер, колдонуучу сценарийлери</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Responsive Simulator Section -->
+    <section id="responsive" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                    Интерактивдүү Адаптивдүүлүк Симулятору
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">
+                    Заманбап веб-сайт экрандын өлчөмүнө жараша автоматтык түрдө өзгөрүшү зарыл. Төмөндөгү баскычтарды басып текшериңиз:
+                </p>
+            </div>
+
+            <!-- Device Switch Controls -->
+            <div class="flex justify-center gap-2 sm:gap-4 mb-8">
+                <button onclick="setDevice('desktop')" id="btn-desktop" class="device-btn px-5 py-2.5 rounded-xl font-bold text-sm bg-sky-600 text-white shadow-md transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-desktop"></i> Компьютер
+                </button>
+                <button onclick="setDevice('tablet')" id="btn-tablet" class="device-btn px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-tablet-screen-button"></i> Планшет
+                </button>
+                <button onclick="setDevice('mobile')" id="btn-mobile" class="device-btn px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-mobile-screen-button"></i> Смартфон
+                </button>
+            </div>
+
+            <!-- Simulator Box Container -->
+            <div class="bg-slate-200 dark:bg-slate-900 p-4 sm:p-8 rounded-3xl border border-slate-300 dark:border-slate-800 flex justify-center items-center overflow-hidden min-h-[500px]">
+                
+                <!-- Frame Wrapper -->
+                <div id="previewFrame" class="device-transition w-full max-w-[100%] h-[460px] bg-white dark:bg-slate-950 rounded-2xl border-4 border-slate-700 dark:border-slate-700 shadow-2xl flex flex-col overflow-hidden">
+                    
+                    <!-- Browser Top Bar -->
+                    <div class="bg-slate-100 dark:bg-slate-900 px-4 py-2.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        </div>
+                        <div class="px-3 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-xs text-slate-500 dark:text-slate-400 font-mono w-1/2 text-center truncate">
+                            https://example-site.ky
+                        </div>
+                        <i class="fa-solid fa-rotate-right text-xs text-slate-400"></i>
+                    </div>
+
+                    <!-- Inner Simulated Web Content -->
+                    <div class="p-6 overflow-y-auto flex-grow flex flex-col gap-6">
+                        <!-- Simulated Header -->
+                        <div class="flex items-center justify-between border-b pb-4 border-slate-200 dark:border-slate-800">
+                            <div class="font-extrabold text-sky-600">LOGO</div>
+                            <div id="sim-nav" class="flex gap-4 text-xs font-semibold">
+                                <span>Башкы</span>
+                                <span>Биз жөнүндө</span>
+                                <span>Кызматтар</span>
+                            </div>
+                            <div id="sim-menu-icon" class="hidden text-slate-600 dark:text-slate-300">
+                                <i class="fa-solid fa-bars text-lg"></i>
+                            </div>
+                        </div>
+
+                        <!-- Simulated Grid Content -->
+                        <div id="sim-grid" class="grid grid-cols-3 gap-4">
+                            <div class="p-4 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-100 dark:border-sky-900/50">
+                                <div class="w-8 h-8 rounded-lg bg-sky-500 text-white flex items-center justify-center mb-2 text-xs"><i class="fa-solid fa-bolt"></i></div>
+                                <h4 class="font-bold text-xs mb-1">Ылдамдык</h4>
+                                <p class="text-[10px] text-slate-500">Тез жүктөлүүчү интерфейс.</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/50">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-500 text-white flex items-center justify-center mb-2 text-xs"><i class="fa-solid fa-shield"></i></div>
+                                <h4 class="font-bold text-xs mb-1">Коопсуздук</h4>
+                                <p class="text-[10px] text-slate-500">Заманбап коргоо стандарттары.</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-100 dark:border-purple-900/50">
+                                <div class="w-8 h-8 rounded-lg bg-purple-500 text-white flex items-center justify-center mb-2 text-xs"><i class="fa-solid fa-mobile"></i></div>
+                                <h4 class="font-bold text-xs mb-1">Адаптив</h4>
+                                <p class="text-[10px] text-slate-500">Ар түрдүү экрандарга ылайык.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow / Process Section -->
+    <section id="process" class="py-16 md:py-24 bg-white dark:bg-slate-900 border-y border-slate-200/60 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                    Веб-сайт Түзүүнүн Этаптары
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">
+                    Кадамды чыкылдатып, ар бир этаптын мазмунун кененирээк билип алыңыз:
+                </p>
+            </div>
+
+            <!-- Steps Buttons Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-10">
+                <button onclick="showStep(1)" id="step-btn-1" class="step-btn p-4 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/50 text-sky-600 dark:text-sky-400 font-bold text-sm text-center transition-all">
+                    1. Анализ
+                </button>
+                <button onclick="showStep(2)" id="step-btn-2" class="step-btn p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 font-bold text-sm text-center hover:border-sky-500 transition-all">
+                    2. Прототип
+                </button>
+                <button onclick="showStep(3)" id="step-btn-3" class="step-btn p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 font-bold text-sm text-center hover:border-sky-500 transition-all">
+                    3. UI Дизайн
+                </button>
+                <button onclick="showStep(4)" id="step-btn-4" class="step-btn p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 font-bold text-sm text-center hover:border-sky-500 transition-all">
+                    4. Тестирлөө
+                </button>
+                <button onclick="showStep(5)" id="step-btn-5" class="step-btn p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 font-bold text-sm text-center hover:border-sky-500 transition-all col-span-2 md:col-span-1">
+                    5. Ишке киргизүү
+                </button>
+            </div>
+
+            <!-- Dynamic Step Content Card -->
+            <div id="step-content" class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 min-h-[220px] flex flex-col justify-center">
+                <!-- Javascript will populate content here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
+                    Веб-дизайнердин Негизги Куралдары
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg">
+                    Кесипкөй адистер колдонгон заманбап программалар жана веб-технологиялар.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Figma -->
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-fab fa-figma"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Figma</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Интерфейс дизайн жана прототиптөө үчүн эң популярдуу булуттук курал.</p>
+                </div>
+
+                <!-- Adobe XD -->
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Adobe XD</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">UX/UI макеттерди түзүү жана интерактивдүү прототиптерди даярдоо программасы.</p>
+                </div>
+
+                <!-- HTML5 / CSS3 -->
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-brands fa-html5"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">HTML5 / CSS3</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Сайттын фундаменталдык коду жана анын визуалдык стилдерин башкаруу коду.</p>
+                </div>
+
+                <!-- Tailwind CSS -->
+                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Tailwind CSS</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Заманбап жана адаптивдүү веб-баракчаларды тез версткалоо фреймворку.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="py-16 md:py-24 bg-white dark:bg-slate-900 border-t border-slate-200/60 dark:border-slate-800">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-sky-600 dark:text-sky-400 tracking-wider uppercase mb-2 block">Тесттик тапшырма</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                    Билимиңизди Текшериңиз
+                </h2>
+            </div>
+
+            <!-- Interactive Quiz Card -->
+            <div id="quiz-card" class="p-8 rounded-3xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-lg">
+                <div id="quiz-question-container">
+                    <!-- Dynamic Question content inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-slate-900 text-slate-400 text-sm border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>© 2026 WebDesign.ky — Веб-дизайн боюнча интерактивдүү билим берүү баракчасы.</p>
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // 1. Theme Switcher Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.className = 'fa-solid fa-moon';
+            } else {
+                html.classList.add('dark');
+                icon.className = 'fa-solid fa-sun';
+            }
+        }
+
+        // 2. Responsive Simulator Logic
+        function setDevice(device) {
+            const frame = document.getElementById('previewFrame');
+            const simGrid = document.getElementById('sim-grid');
+            const simNav = document.getElementById('sim-nav');
+            const simMenuIcon = document.getElementById('sim-menu-icon');
+            
+            // Reset active button styles
+            document.querySelectorAll('.device-btn').forEach(btn => {
+                btn.className = 'device-btn px-5 py-2.5 rounded-xl font-bold text-sm bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 transition-all flex items-center gap-2';
+            });
+
+            // Set specific styles
+            const activeBtn = document.getElementById(`btn-${device}`);
+            activeBtn.className = 'device-btn px-5 py-2.5 rounded-xl font-bold text-sm bg-sky-600 text-white shadow-md transition-all flex items-center gap-2';
+
+            if (device === 'desktop') {
+                frame.style.maxWidth = '100%';
+                simGrid.className = 'grid grid-cols-3 gap-4';
+                simNav.classList.remove('hidden');
+                simMenuIcon.classList.add('hidden');
+            } else if (device === 'tablet') {
+                frame.style.maxWidth = '640px';
+                simGrid.className = 'grid grid-cols-2 gap-4';
+                simNav.classList.remove('hidden');
+                simMenuIcon.classList.add('hidden');
+            } else if (device === 'mobile') {
+                frame.style.maxWidth = '340px';
+                simGrid.className = 'grid grid-cols-1 gap-4';
+                simNav.classList.add('hidden');
+                simMenuIcon.classList.remove('hidden');
+            }
+        }
+
+        // 3. Process Steps Data & Logic
+        const processSteps = [
+            {
+                title: "1-Этап: Анализ жана Изилдөө",
+                text: "Тапшырыкчынын талаптарын, атаандаштарды жана максаттуу аудиторияны терең изилдөө. Сайттын негизги максатын аныктоо.",
+                icon: "fa-magnifying-glass"
+            },
+            {
+                title: "2-Этап: Прототиптөө (Wireframing)",
+                text: "Сайттын структуралык схемасын (кургак макетин) түзүү. Маалыматтын кайсы жерде жайгашарын пландаштыруу.",
+                icon: "fa-sitemap"
+            },
+            {
+                title: "3-Этап: UI Дизайн",
+                text: "Түстөрдү, шрифттерди жана визуалдык элементтерди кошуп, сайттын акыркы заманбап кооз көрүнүшүн даярдоо.",
+                icon: "fa-palette"
+            },
+            {
+                title: "4-Этап: Тестирлөө",
+                text: "Сайттын колдонууга канчалык ыңгайлуу экенин (UX) текшерүү. Мүчүлүштүктөрдү жана каталарды оңдоо.",
+                icon: "fa-vial-circle-check"
+            },
+            {
+                title: "5-Этап: Ишке киргизүү (Launch)",
+                text: "Дизайнды программисттерге тапшыруу, коддоо жана сайтты доменге жайгаштырып ишке киргизүү.",
+                icon: "fa-rocket"
+            }
+        ];
+
+        function showStep(index) {
+            const step = processSteps[index - 1];
+            const contentDiv = document.getElementById('step-content');
+
+            // Highlight buttons
+            document.querySelectorAll('.step-btn').forEach((btn, idx) => {
+                if (idx === index - 1) {
+                    btn.className = 'step-btn p-4 rounded-xl border border-sky-500 bg-sky-50 dark:bg-sky-950/50 text-sky-600 dark:text-sky-400 font-bold text-sm text-center transition-all';
+                } else {
+                    btn.className = 'step-btn p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 font-bold text-sm text-center hover:border-sky-500 transition-all';
+                }
+            });
+
+            contentDiv.innerHTML = `
+                <div class="flex items-start gap-5">
+                    <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid ${step.icon}"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">${step.title}</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">${step.text}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize Step 1
+        showStep(1);
+
+        // 4. Quiz Logic
+        const quizQuestions = [
+            {
+                question: "UI (User Interface) негизинен эмнеге жооп берет?",
+                answers: [
+                    "Сайттын сервердеги кодуна",
+                    "Визуалдык көрүнүшүнө жана сулуулугуна",
+                    "Домен атынын баасына"
+                ],
+                correct: 1,
+                explanation: "Туура! UI сайттын түстөрү, шрифттери жана визуалдык жасалгасына жооп берет."
+            },
+            {
+                question: "Адаптивдүү дизайн эмнени билдирет?",
+                answers: [
+                    "Сайттын тез ачылышын",
+                    "Сайттын ар кандай түзмөктөргө (компьютер, телефон) ылайыкташуусун",
+                    "Сайттын вирустардан корголуусун"
+                ],
+                correct: 1,
+                explanation: "Туура! Адаптивдүү дизайн бардык экрандарда сайтты туура чагылдырат."
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function renderQuestion() {
+            const container = document.getElementById('quiz-question-container');
+            const q = quizQuestions[currentQuestion];
+
+            container.innerHTML = `
+                <span class="text-xs font-bold text-slate-400 mb-2 block">Суроо ${currentQuestion + 1} / ${quizQuestions.length}</span>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">${q.question}</h3>
+                <div class="space-y-3 mb-6">
+                    ${q.answers.map((ans, idx) => `
+                        <button onclick="checkAnswer(${idx})" class="w-full text-left p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-sky-500 font-medium text-slate-700 dark:text-slate-200 transition-all">
+                            ${ans}
+                        </button>
+                    `).join('')}
+                </div>
+                <div id="quiz-feedback" class="hidden p-4 rounded-xl"></div>
+            `;
+        }
+
+        function checkAnswer(index) {
+            const q = quizQuestions[currentQuestion];
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden');
+
+            if (index === q.correct) {
+                feedback.className = 'p-4 rounded-xl bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/30 text-sm font-semibold';
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i> ${q.explanation}`;
+            } else {
+                feedback.className = 'p-4 rounded-xl bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/30 text-sm font-semibold';
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-2"></i> Ката. Кайра аракет кылып көрүңүз!`;
+            }
+        }
+
+        // Initialize Quiz
+        renderQuestion();
+    </script>
+</body>
+</html>
